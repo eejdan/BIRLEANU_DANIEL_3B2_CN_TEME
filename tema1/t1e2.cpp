@@ -1,21 +1,8 @@
 #include <cmath>
 #include <stdio.h>
-#include <stdexcept>
-// compilat fara argumente (">g++ tema1.cpp"); folosesc gcc version 6.3.0 (MinGW.org GCC-6.3.0-1)
-// Ex 1.
-double getMachinePrecisionUnit() {
-    int m=1;
-     
-    while(m < 1000) {
-        double x = 1.0 + pow(10.0, -m);
-        if (x == 1.0) return pow(10.0, -(m-1));
-        m++;
-    }
 
-    throw std::runtime_error("Nu s-a gasit precizia masina pana in limita");
-}
+#include "mpu.h"
 
-// Ex 2.
 void canAdditionAssociativityBreak() {
     double mpu = getMachinePrecisionUnit();
 
@@ -38,12 +25,9 @@ void canMultiplicationAssociativityBreak() {
     printf("testez (x*y)*z == x*(y*z) => %s\n", ((x * y) * z) == (x  * (y * z)) ? "este asociativ" : "nu e asociativ");
     // ar trebui sa gaseasca in sub o secunda, daca nu, rerun
 }
-// Ex 3.
 
 
 int main() {
-    double mpu = getMachinePrecisionUnit();
-    printf("Machine precision unit: %e\n", mpu);
     canAdditionAssociativityBreak();
     canMultiplicationAssociativityBreak();
     return 0;
