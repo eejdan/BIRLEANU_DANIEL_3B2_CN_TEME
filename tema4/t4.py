@@ -144,18 +144,21 @@ def main():
 	for fileno in [1,2,3,4,5]:
 		system = loadRareMatrixSystem(fileno, epsilon)
 		
-		ex1(system)
-		ex2(system)
-		ex3(system);
+		ex1(system) # dimensiune
+		ex2(system) # ordinul p si q
 		try:
-			xgs = ex4(system)
+			ex3(system) # verificare d0 nenule
+			xgs = ex4(system) # Ax=B cu GaussSeidel
 			print("Solutia aproximativa xgs:")
 			print(xgs)
 			#saveVector(f"result/xgs_{fileno}.txt", xgs)
-			y = ex5(system, xgs)
+			
+			y = ex5(system, xgs) # y = Axgs
+			print("Produsul y=Axgs:")
+			print(y)
 			#saveVector(f"result/y_{fileno}.txt", y)
 
-			ex6(system, y)
+			ex6(system, y) # eroare maxima Linf
 		except ValueError as e:
 			print(e)
 
